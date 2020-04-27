@@ -1,0 +1,248 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class=" js no-touch">
+
+<head>
+  <title>NittanyPath | {{ name }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600|Raleway:600,300|Josefin+Slab:400,700,600italic,600,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slick-team-slider.css' %}" >
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <!-- =======================================================
+    Theme Name: Tempo
+    Theme URL: https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+
+</head>
+
+<body id = "student">
+  <!--HEADER START-->
+  <div class="main-navigation navbar-fixed-top">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </button>
+          <a class="navbar-brand" href="{% url 'home' %}">Ntny_P@th</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="/">Academics</a></li>
+            <li><a href="/">Research</a></li>
+            <li><a href="/">Contact Us</a></li>
+            <li><a href="{% url 'change_password' %}">Change Password</a></li>
+
+
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!--HEADER END-->
+
+  <!--BANNER START-->
+  <div id="banner" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="jumbotron">
+          <h1 class="small">Welcome, <span class="bold">{{ name }}.</span></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--BANNER END-->
+
+  <!--CTA1 START-->
+  <div class="cta-1">
+    <div class="container">
+      <div class="row text-center white">
+        <p class="cta-sub-title">Access your classes and assignments here.</p>
+      </div>
+    </div>
+  </div>
+  <!--CTA1 END-->
+
+  <div class="container">
+      <h1 align="center">About you</h1>
+      <hr class="pg-titl-bdr-btm"></hr>
+
+      <section class="blog">
+                <div class="container">
+
+                    <div class="row">
+                         <div class="col-lg-12 entries">
+
+                                <div class="col-md-4">
+                                    <article class="entry">
+
+
+                                      <h2 class="entry-title">Major</h2>
+
+                                      <div class="entry-meta">
+
+                                      </div>
+
+                                      <div class="entry-content">
+                                        <p>{{ major }}</p>
+                                      </div>
+
+                                    </article>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <article class="entry">
+
+
+                                      <h2 class="entry-title">Age</h2>
+
+                                      <div class="entry-meta">
+
+                                      </div>
+
+                                      <div class="entry-content">
+                                        <p>{{ age }}</p>
+                                      </div>
+
+                                    </article>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <article class="entry">
+
+
+                                      <h2 class="entry-title">Gender</h2>
+
+                                      <div class="entry-meta">
+
+                                      </div>
+
+                                      <div class="entry-content">
+                                        <p>{{ gender }}</p>
+                                      </div>
+
+                                    </article>
+                                </div>
+
+
+
+
+                          </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 entries">
+                        <div class="col-md-8">
+                                    <article class="entry">
+
+
+                                      <h2 class="entry-title">Address</h2>
+
+                                      <div class="entry-meta">
+
+                                      </div>
+
+                                      <div class="entry-content">
+                                        <p>{{ street }}, {{ city }}, {{ state }}, {{ zip }}</p>
+                                      </div>
+
+                                    </article>
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+  </div>
+
+  <div id="portfolio">
+    <div class="container ">
+      <div class="page-title text-center">
+        <h1>Your Classes</h1>
+        <hr class="pg-titl-bdr-btm"></hr>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+        </div>
+      </div>
+
+
+        {% for class, image in classes %}
+
+        <div class="col-lg-3 col-md-6 portfolio-item">
+          <a  href="{% url 'student_class_info' name class.course_id %}">
+            <img src = "{% static image %}">
+            <div class="details">
+              <h4>{{ class.course_id }}</h4>
+                <br>
+              <span>{{ class.course_name }}</span>
+            </div>
+          </a>
+        </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  {% if ta_courses != None %}
+  <div id="portfolio">
+    <div class="container ">
+      <div class="page-title text-center">
+        <h1>Classes Teaching</h1>
+        <hr class="pg-titl-bdr-btm"></hr>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+        </div>
+      </div>
+
+
+        {% for class, image, sec_no in ta_courses %}
+
+        <div class="col-lg-3 col-md-6 portfolio-item">
+          <a  href="{% url 'prof_class_info' name class.course_id sec_no %}">
+            <img src = "{% static image %}">
+            <div class="details">
+              <h4>{{ class.course_id }}: Section {{ sec_no }}</h4>
+                <br>
+              <span>{{ class.course_name }}</span>
+            </div>
+          </a>
+        </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  {% endif %}
+
+
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+﻿course_id,course_name,course_description,late_drop_deadline
+CHEM110,Environmental Chemistry,3 Credit Course.,11/21/2019
+CHEM111,Experimental Chemistry,3 Credit Course.,11/21/2019
+CHEM112,Chemical Principles,3 Credit Course.,11/21/2019
+CMPEN270,Embedded Systems Design,3 Credit Course.,11/21/2019
+CMPEN331,Computer Organization And Design,3 Credit Course.,11/21/2019
+CMPEN351,Microprocessors,3 Credit Course.,11/21/2019
+CMPEN362,Communication Networks,3 Credit Course.,11/21/2019
+CMPEN411,VLSI Digital Circuits,3 Credit Course.,11/21/2019
+CMPEN431,Introduction to Computer Architecture,3 Credit Course.,11/21/2019
+CMPEN441,Operating Systems,3 Credit Course.,11/21/2019
+CMPEN454,Fundamentals of Computer Vision,3 Credit Course.,11/21/2019
+CMPSC131,Programming and Computation,3 Credit Course.,11/21/2019
+CMPSC132,Programming and Computation II,3 Credit Course.,11/21/2019
+CMPSC221,OOP with Web Design,3 Credit Course.,11/21/2019
+CMPSC311,Introduction to Systems Programming,3 Credit Course.,11/21/2019
+CMPSC360,Discrete Mathematics for CMPSC,3 Credit Course.,11/21/2019
+CMPSC431W,DBMS,3 Credit Course.,11/21/2019
+CMPSC448,Machine Learning and Algorithmic AI,3 Credit Course.,11/21/2019
+CMPSC461,Programming Language Concepts,3 Credit Course.,11/21/2019
+CMPSC465,Data structures and algorithms,3 Credit Course.,11/21/2019
+CMPSC475,Applications Programming,3 Credit Course.,11/21/2019
+CMPSC497,Introduction to Data Mining,3 Credit Course.,11/21/2019
+CSE543,Computer Security,3 Credit Course.,11/21/2019
+CSE583,Pattern Recognition,3 Credit Course.,11/21/2019
+DS120,Python for data science,3 Credit Course.,11/21/2019
+DS220,Data Modelling,3 Credit Course.,11/21/2019
+DS410,NULL,NULL,11/21/2019
+ECON101,Principles of Economics,3 Credit Course.,11/21/2019
+ECON102,Introductory Microeconomic Analysis and Policy,3 Credit Course.,11/21/2019
+ECON201,Intermediate Microeconomic Analysis,3 Credit Course.,11/21/2019
+EE210,Continuous Time Linear Systems,3 Credit Course.,11/21/2019
+EE211,Circuit Theory,3 Credit Course.,11/21/2019
+EE212,Introduction to Signal Conditioning ,3 Credit Course.,11/21/2019
+EE311,Devices and Circuits I,3 Credit Course.,11/21/2019
+EE320,Network Security and Cryptography,3 Credit Course.,11/21/2019
+EE330,Energy Systems,3 Credit Course.,11/21/2019
+EE340,Design in Communications,3 Credit Course.,11/21/2019
+EE352,Design of Digital Circuits and Systems,3 Credit Course.,11/21/2019
+EE353,Applied Electromagnetics,3 Credit Course.,11/21/2019
+IST110,"Introduction to Information, People And Technology",3 Credit Course.,11/21/2019
+IST128,Introduction to Python,3 Credit Course.,11/21/2019
+IST558,Data Mining 2,3 Credit Course.,11/21/2019
+MATH140,Calculus with Analytic Geometry,3 Credit Course.,11/21/2019
+MATH141,Matrices,3 Credit Course.,11/21/2019
+MATH230,Ordinary and Partial Differential Equations,3 Credit Course.,11/21/2019
+MATH231,Vector Calculus,3 Credit Course.,11/21/2019
+PHYS211,Thermal Physics,3 Credit Course.,11/21/2019
+PHYS212,Solid State Physics,3 Credit Course.,11/21/2019
+PHYS213,General Physics: Electricity and Magnetism,3 Credit Course.,11/21/2019
+PHYS214,General Physics: Wave Motion and Quantum Physics,3 Credit Course.,11/21/2019
+STAT318,Elementary Probability,3 Credit Course.,11/21/2019
+STAT319,Applied Statistics in Science,3 Credit Course.,11/21/2019
+STAT414,Introduction to Probability Theory,3 Credit Course.,11/21/2019
+STAT415,Introduction to Mathematical Statistics,3 Credit Course.,11/21/2019

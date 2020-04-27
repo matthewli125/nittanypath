@@ -1,0 +1,172 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class=" js no-touch">
+
+<head>
+  <title>NittanyPath | {{ name }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600|Raleway:600,300|Josefin+Slab:400,700,600italic,600,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slick-team-slider.css' %}" >
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href={% static 'css/bootstrap-select.min.css' %}>
+  <!-- =======================================================
+    Theme Name: Tempo
+    Theme URL: https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+
+</head>
+
+<body id = "forum">
+  <!--HEADER START-->
+  <div class="main-navigation navbar-fixed-top">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </button>
+          <a class="navbar-brand" href="{% url 'user_home' %}">Ntny_P@th</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="/">Academics</a></li>
+            <li><a href="/">Research</a></li>
+            <li><a href="/">Contact Us</a></li>
+
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!--HEADER END-->
+
+  <!--BANNER START-->
+  <div id="banner" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="jumbotron">
+          <h1 class="small">{{ c_dept }}<span class="bold">{{ c_num }}</span> </h1>
+            <h1 class="smaller">{{ c_name }}</h1>
+            <h1 class="smallest">discussion forum</h1>
+            <br>
+            <a href="{% url 'new_post' %}" class="btn btn-banner">New post<i class="fa fa-pencil"></i></a>
+            <br>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--BANNER END-->
+
+
+    <div id="portfolio">
+        <div class="container ">
+          <div class="page-title text-center">
+            <h1>Class Posts</h1>
+            <hr class="pg-titl-bdr-btm"></hr>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">
+            </div>
+          </div>
+    </div>
+
+      <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-8 entries">
+
+            {% for user, post, post_title, post_preview in posts %}
+
+                <div class="col-md-6">
+                    <article class="entry">
+
+
+                      <h2 class="entry-title">
+                        <a  href="{% url 'post_detail' post.pk %}">{{ post_title }}</a>
+                      </h2>
+
+                      <div class="entry-meta">
+                        <ul>
+                            {% if user.1 == "professor" %}
+                                <li class="d-flex align-items-center"><i class="fa fa-graduation-cap"></i> <a href = "{% url 'posts' user.0.email %}"> {{ user.0.name }}</a></li>
+                            {% else %}
+                                <li class="d-flex align-items-center"><i class="fa fa-user"></i>  <a href = "{% url 'posts' user.0.email %}">{{ user.0.name }}</a></li>
+                            {% endif %}
+                        </ul>
+                      </div>
+
+                      <div class="entry-content">
+                        <p>{{ post_preview }}</p>
+                        <div class="read-more">
+                          <a href="{% url 'post_detail' post.pk %}">Read More</a>
+                        </div>
+                      </div>
+
+                    </article><!-- End blog entry -->
+                </div>
+            {% endfor %}
+
+
+
+          </div><!-- End blog entries list -->
+
+          <div class="col-lg-4" style="float: right;">
+
+            <div class="sidebar">
+
+
+              <h3 class="sidebar-title">Categories</h3>
+              <div class="sidebar-item categories">
+                <ul>
+                  <li><a href="{% url 'posts' user_email %}">Your posts</a></li>
+                  <li><a href="{% url 'posts' "all"  %}">All posts </a></li>
+                </ul>
+
+              </div><!-- End sidebar categories-->
+
+
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+
+
+      </div>
+    </section><!-- End Blog Section -->
+
+
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+  <script src={% static 'js/bootstrap-select.min.js' %}></script>
+
+</body>
+
+</html>

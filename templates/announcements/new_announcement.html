@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class=" js no-touch">
+
+<head>
+  <title>NittanyPath | {{ name }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600|Raleway:600,300|Josefin+Slab:400,700,600italic,600,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slick-team-slider.css' %}" >
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href={% static 'css/bootstrap-select.min.css' %}>
+  <!-- =======================================================
+    Theme Name: Tempo
+    Theme URL: https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+
+</head>
+
+<body id = "forum">
+  <!--HEADER START-->
+  <div class="main-navigation navbar-fixed-top">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </button>
+          <a class="navbar-brand" href="{% url 'user_home' %}">Ntny_P@th</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="/">Academics</a></li>
+            <li><a href="/">Research</a></li>
+            <li><a href="/">Contact Us</a></li>
+
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!--HEADER END-->
+
+  <!--BANNER START-->
+  <div id="banner" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="jumbotron">
+          <h1 class="small">{{ c_dept }}<span class="bold">{{ c_num }}</span> </h1>
+            <h1 class="smaller">{{ c_name }}</h1>
+            <h1 class="smallest">Section {{ sec_no }} Announcements</h1>
+            <br>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--BANNER END-->
+<div class="container">
+  <div class="page-title text-center">
+      <h1>New announcement</h1>
+      <hr class="pg-titl-bdr-btm"></hr>
+
+          <div class="form-sec">
+          <form action="{% url 'new_announcement' %}" method="post" role="form" class="post-form">{% csrf_token %}
+            <div class="col-md-12 form-group">
+              <textarea style="padding-top: 20px" class="form-control text-field-box" name="comment_info" rows="5" required data-msg="Please write something for us" placeholder="Message"></textarea>
+              <div class="validation"></div>
+
+              <button class="button-medium" id="contact-submit" type="submit" name="contact">Submit Now</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+<br>
+  <br>
+  <br>
+  <br>
+
+
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+  <script src={% static 'js/bootstrap-select.min.js' %}></script>
+
+</body>
+
+</html>

@@ -1,0 +1,351 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class=" js no-touch">
+
+<head>
+  <title>NittanyPath | {{ name }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,600|Raleway:600,300|Josefin+Slab:400,700,600italic,600,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/slick-team-slider.css' %}" >
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href={% static 'css/bootstrap-select.min.css' %}>
+
+  <!-- =======================================================
+    Theme Name: Tempo
+    Theme URL: https://bootstrapmade.com/tempo-free-onepage-bootstrap-theme/
+    Author: BootstrapMade.com
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
+
+</head>
+
+<body id = "student">
+  <!--HEADER START-->
+  <div class="main-navigation navbar-fixed-top">
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </button>
+          <a class="navbar-brand" href="{% url 'user_home' %}">Ntny_P@th</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="/">Academics</a></li>
+            <li><a href="/">Research</a></li>
+            <li><a href="/">Contact Us</a></li>
+
+
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+
+            {% endif %}
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!--HEADER END-->
+
+  <!--BANNER START-->
+  <div id="banner" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <div class="jumbotron">
+          <h1 class="small">{{ c_dept }}<span class="bold">{{ c_num }}</span> </h1>
+            <h1 class="smaller">{{ aname }}</h1>
+            <h1 class="smallest">section {{ sec_no }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--BANNER END-->
+
+<div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Create grade</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class ="container">
+        <select class = "selectpicker" data-live-search="true" required id="option">
+            <option disabled value="" selected>Choose Student</option>
+            {% for student,grades in grades %}
+                <option value = {{ student.email }}>{{ student.email }}     ({{ student.name }})</option>
+            {% endfor %}
+
+        </select>
+      </div>
+
+      <div class="modal-body mx-3">
+        <div class="col md-12">
+          <input id="grade" type="number" class="form-control text-field-box" placeholder="Grade out of 100 points">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+          <button type="submit" class="btn btn-info" href="" onclick = "getGrade(); return false;">submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Confirmation</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="text-center">
+          <h4>Are you sure?</h4>
+      </div>
+
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+          <a href="{% url 'delete_assignment'  atype anum %}" class="btn btn-info" type="submit">delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+{% if user_type == "professor" %}
+    <div class="text-center">
+        <div class = "btn-group-vertical">
+            <a href="" class="button-medium" data-toggle="modal" data-target="#modalRegisterForm">Modify a grade</a>
+            <br>
+            <a href="" class="button-medium" data-toggle="modal" data-target="#modalConfirm">Delete Assignment</a>
+        </div>
+    </div>
+{% endif %}
+
+<script>
+    function getGrade() {
+        var index = document.getElementById("option").selectedIndex;
+        var student_email = document.getElementsByTagName("option")[index].value;
+        var grade = document.getElementById("grade").value;
+
+        var url = "{% url 'create_grade' %}";
+
+        document.location.href = url + student_email + '/' + grade;
+    }
+</script>
+
+
+      <div id="portfolio">
+        <div class="container ">
+          <div class="page-title text-center">
+            <h1>Assignment Info</h1>
+            <hr class="pg-titl-bdr-btm"></hr>
+          </div>
+
+            <section class="blog">
+                <div class="container">
+                    <div class="row">
+                         <div class="col-lg-12 entries">
+
+                                <div class="col-md-12">
+                                    <article class="entry">
+
+
+                                      <h2 class="entry-title">Assignment Details</h2>
+
+                                      <div class="entry-meta">
+
+                                      </div>
+
+                                      <div class="entry-content">
+                                        <p>{{ adet }}</p>
+                                      </div>
+
+                                    </article>
+                                </div>
+                          </div>
+                          {% if user_type == "student" %}
+                              <div class="col-lg-12 entries">
+
+                                    <div class="col-md-12">
+                                        <article class="entry">
+
+
+                                          <h2 class="entry-title">Your grade</h2>
+
+                                          <div class="entry-meta">
+
+                                          </div>
+
+                                          <div class="entry-content">
+                                            <p>{{ grade }}</p>
+                                          </div>
+
+                                        </article>
+                                    </div>
+                              </div>
+                          {% endif %}
+                    </div>
+
+                    <div class="row">
+                         <div class="col-lg-12 entries">
+
+                                <div class="col-md-4">
+                                    <article class="entry">
+
+
+                                      <h2 class="entry-title">Average Grade</h2>
+
+                                      <div class="entry-meta">
+
+                                      </div>
+
+                                      <div class="entry-content">
+                                        <p>{{ avg }}</p>
+                                      </div>
+
+                                    </article>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <article class="entry">
+
+
+                                      <h2 class="entry-title">Lowest Grade</h2>
+
+                                      <div class="entry-meta">
+
+                                      </div>
+
+                                      <div class="entry-content">
+                                        <p>{{ min }}</p>
+                                      </div>
+
+                                    </article>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <article class="entry">
+
+
+                                      <h2 class="entry-title">Highest Grade</h2>
+
+                                      <div class="entry-meta">
+
+                                      </div>
+
+                                      <div class="entry-content">
+                                        <p>{{ max }}</p>
+                                      </div>
+
+                                    </article>
+                                </div>
+
+
+
+
+                          </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+
+{% if user_type == "professor" %}
+
+    <div id="portfolio">
+        <div class="container ">
+          <div class="page-title text-center">
+            <h1>Graded</h1>
+            <hr class="pg-titl-bdr-btm"></hr>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">
+            </div>
+          </div>
+
+
+            {% for student, grade in graded_students %}
+
+            <div class="col-lg-12 portfolio-item-grade">
+              <a  href="">
+                <div class="details">
+
+                  <span style="margin-top: 5px;">{{ student.name }} ({{ student.email }})<span class="right">Grade: {{ grade }} &nbsp;&nbsp;&nbsp;</span></span>
+
+                </div>
+              </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div id="portfolio">
+        <div class="container ">
+          <div class="page-title text-center">
+            <h1>Ungraded</h1>
+            <hr class="pg-titl-bdr-btm"></hr>
+          </div>
+          <div class="row">
+            <div class="col-lg-1">
+            </div>
+          </div>
+
+
+            {% for student, grade in ungraded_students %}
+
+            <div class="col-lg-12 portfolio-item-grade">
+              <a  href="">
+                <div class="details">
+                  <h4>Homework {{ student.name }}<span class="right">Grade: {{ grade }}&nbsp;&nbsp;&nbsp;&nbsp;</span></h4>
+
+                </div>
+              </a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+  {% endif %}
+
+
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+  <script src={% static 'js/bootstrap-select.min.js' %}></script>
+
+</body>
+
+</html>
